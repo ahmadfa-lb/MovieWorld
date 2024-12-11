@@ -1,8 +1,8 @@
 "use client";
 
-import './globals.css';
+import "./globals.css";
 import { useState, useEffect } from "react";
-import Image from 'next/image';
+import Image from "next/image";
 import Navbar from "../components/Navbar";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -50,7 +50,10 @@ const Home: React.FC = () => {
 
   // Paginate movies (9 movies per page)
   const moviesPerPage = 8;
-  const displayedMovies = movies.slice((page - 1) * moviesPerPage, page * moviesPerPage);
+  const displayedMovies = movies.slice(
+    (page - 1) * moviesPerPage,
+    page * moviesPerPage
+  );
   const totalPages = Math.ceil(totalMovies / moviesPerPage);
 
   // Helper function to get visible page numbers
@@ -62,11 +65,18 @@ const Home: React.FC = () => {
       }
     } else {
       if (page <= 3) {
-        pages.push(1, 2, 3, 4, '...', totalPages);
+        pages.push(1, 2, 3, 4, "...", totalPages);
       } else if (page >= totalPages - 2) {
-        pages.push(1, '...', totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+        pages.push(
+          1,
+          "...",
+          totalPages - 3,
+          totalPages - 2,
+          totalPages - 1,
+          totalPages
+        );
       } else {
-        pages.push(1, '...', page - 1, page, page + 1, '...', totalPages);
+        pages.push(1, "...", page - 1, page, page + 1, "...", totalPages);
       }
     }
     return pages;
@@ -93,41 +103,42 @@ const Home: React.FC = () => {
         ))}
       </div>
 
-{/* Pagination */}
-<div className="flex justify-center mt-4 items-center gap-2">
-  <button
-    disabled={page === 1}
-    className="px-4 py-2 bg-gray-300 rounded-md"
-    onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-  >
-    Prev
-  </button>
-  {visiblePages.map((p, index) =>
-    p === '...' ? (
-      <span key={`ellipsis-${index}`} className="px-4 py-2">
-        ...
-      </span>
-    ) : (
-      <button
-        key={`page-${p}`}
-        className={`px-4 py-2 ${
-          page === p ? "bg-blue-500 text-white" : "bg-gray-300"
-        } rounded-md`}
-        onClick={() => setPage(p as number)}
-      >
-        {p}
-      </button>
-    )
-  )}
-  <button
-    disabled={page === totalPages}
-    className="px-4 py-2 bg-gray-300 rounded-md"
-    onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
-  >
-    Next
-  </button>
-</div>
+      {/* Pagination */}
+      <div className="flex justify-center mt-4 items-center gap-2">
+        <button
+          disabled={page === 1}
+          className="px-4 py-2 bg-gray-300 rounded-md"
+          onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+        >
+          Prev
+        </button>
+        {visiblePages.map((p, index) =>
+          p === "..." ? (
+            <span key={`ellipsis-${index}`} className="px-4 py-2">
+              ...
+            </span>
+          ) : (
+            <button
+              key={`page-${p}`}
+              className={`px-4 py-2 ${
+                page === p ? "bg-blue-500 text-white" : "bg-gray-300"
+              } rounded-md`}
+              onClick={() => setPage(p as number)}
+            >
+              {p}
+            </button>
+          )
+        )}
+        <button
+          disabled={page === totalPages}
+          className="px-4 py-2 bg-gray-300 rounded-md"
+          onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
+        >
+          Next
+        </button>
+      </div>
 
+      <Footer />
     </div>
   );
 };
