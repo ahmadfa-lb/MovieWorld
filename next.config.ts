@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const NextConfig = {
+  images: {
+    domains: ['image.tmdb.org'], // Add allowed domains here
+  },
 };
-
-export default nextConfig;
+export default NextConfig;
