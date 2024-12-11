@@ -16,13 +16,13 @@ interface Movie {
 const Home: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState<number>(1);
-  const [totalMovies, setTotalMovies] = useState<number>(0); // Keep track of the total number of movies to display
+  const [totalMovies, setTotalMovies] = useState<number>(0); 
 
   // Fetch multiple pages of movies
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const maxPagesToFetch = 5; // Increase this to fetch even more movies
+        const maxPagesToFetch = 5;
         const movieResults: Movie[] = [];
 
         for (let i = 1; i <= maxPagesToFetch; i++) {
@@ -43,12 +43,12 @@ const Home: React.FC = () => {
     fetchMovies();
   }, []);
 
-  // Avoid rendering content until movies are loaded
+
   if (movies.length === 0) {
     return <div>Loading...</div>;
   }
 
-  // Paginate movies (9 movies per page)
+
   const moviesPerPage = 8;
   const displayedMovies = movies.slice(
     (page - 1) * moviesPerPage,
@@ -56,7 +56,6 @@ const Home: React.FC = () => {
   );
   const totalPages = Math.ceil(totalMovies / moviesPerPage);
 
-  // Helper function to get visible page numbers
   const getVisiblePages = () => {
     const pages = [];
     if (totalPages <= 5) {
@@ -88,13 +87,13 @@ const Home: React.FC = () => {
     <div className="h-screen">
       <Header />
       <Navbar />
-      <div className="grid grid-cols-4 gap-4 m-4 justify-items-center">
+      <div className="grid grid-cols-4 gap-4 m-4 justify-items-center h-3/5">
         {displayedMovies.map((movie) => (
-          <div key={movie.id} className="bg-gray-200 p-4 rounded-md w-60">
+          <div key={movie.id} className="bg-gray-200 p-4 rounded-md w-72">
             <Image
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt={movie.title}
-              width={200}
+              width={100}
               height={300}
               className="rounded-md"
             />
@@ -104,7 +103,7 @@ const Home: React.FC = () => {
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center mt-4 items-center gap-2">
+      <div className="flex justify-center mt-4 items-center gap-2 pt-6">
         <button
           disabled={page === 1}
           className="px-4 py-2 bg-gray-300 rounded-md"
