@@ -1,12 +1,12 @@
 "use client";
 
-import "./globals.css";
 import { useState, useEffect } from "react";
-import Image from "next/image";
-import Navbar from "../components/Navbar";
-import MovieCard from "../components/MovieCard"
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Navbar from "@/components/Navbar";
+import MovieCard from "@/components/MovieCard";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import "./globals.css";
+import Pagination from "@/components/Pagination";
 
 interface Movie {
   id: number;
@@ -90,53 +90,27 @@ const Home: React.FC = () => {
   return (
     <div className="h-screen flex flex-col w-full">
       <div className="sticky top-0">
-      <Header />
-      <Navbar />
+        <Header />
+        <Navbar />
       </div>
       <div className="grid grid-cols-4 gap-4 m-8 justify-items-center">
         {displayedMovies.map((movie) => (
-          <MovieCard 
-            key={movie.id} 
-            title={movie.title } 
-            id={movie.id} 
-            poster_path={movie.poster_path}/>
+          <MovieCard
+            key={movie.id}
+            title={movie.title}
+            id={movie.id}
+            poster_path={movie.poster_path}
+          />
         ))}
       </div>
 
-      {/* Pagination */}
-      <div className="flex justify-center items-center mt-8 gap-2 mb-8">
-        <button
-          disabled={page === 1}
-          className="px-4 py-2 bg-gray-300 rounded-md"
-          onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-        >
-          Prev
-        </button>
-        {visiblePages.map((p, index) =>
-          p === "..." ? (
-            <span key={`ellipsis-${index}`} className="px-4 py-2">
-              ...
-            </span>
-          ) : (
-            <button
-              key={`page-${p}`}
-              className={`px-4 py-2 ${
-                page === p ? "bg-blue-500 text-white" : "bg-gray-300"
-              } rounded-md`}
-              onClick={() => setPage(p as number)}
-            >
-              {p}
-            </button>
-          )
-        )}
-        <button
-          disabled={page === totalPages}
-          className="px-4 py-2 bg-gray-300 rounded-md"
-          onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
-        >
-          Next
-        </button>
-      </div>
+      <Pagination 
+        page={page}
+        setPage={setPage}
+        visiblePages={visiblePages}
+        totalPages={totalPages}
+      />
+      
       <Footer />
     </div>
   );

@@ -21,5 +21,4 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, title, poster_path }) => {
   </div>);
 }
 
-
 export default MovieCard;
