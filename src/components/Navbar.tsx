@@ -10,7 +10,7 @@ const Navbar: FC = () => {
         <input
           type="text"
           placeholder="Search movies..."
-          className="p-2 w-64 bg-inherit text-white placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="p-2 w-64 bg-inherit text-white placeholder-gray-400 rounded-md focus:outline-none "
         />
       </div>
     </nav>

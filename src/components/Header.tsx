@@ -17,7 +17,7 @@ export default function Header() {
           />
         </div>
         <div>
-          <Link href={"/Home"} className="flex flex-col items-center">
+          <Link href={"/"} className="flex flex-col items-center">
             <FaHouse className="text-2xl text-gray-100" />
             <p className="uppercase hidden sm:inline text-sm text-gray-100 hover:underline">
               Home

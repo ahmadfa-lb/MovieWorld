@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Navbar from "@/components/Navbar";
+// import { useRouter } from "next/router";
 import MovieCard from "@/components/MovieCard";
 import Header from "@/components/Header";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
 import Pagination from "@/components/Pagination";
@@ -15,6 +16,7 @@ interface Movie {
 }
 
 const Home: React.FC = () => {
+  // const router = useRouter();
   const [movies, setMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState<number>(1);
   const [totalMovies, setTotalMovies] = useState<number>(0);
@@ -53,7 +55,7 @@ const Home: React.FC = () => {
     return <div>Loading...</div>;
   }
 
-  const moviesPerPage = 8;
+  const moviesPerPage = 9;
   const displayedMovies = movies.slice(
     (page - 1) * moviesPerPage,
     page * moviesPerPage
@@ -88,18 +90,19 @@ const Home: React.FC = () => {
   const visiblePages = getVisiblePages();
 
   return (
-    <div className="h-screen flex flex-col w-full">
+    <div className="min-h-screen flex flex-col">
       <div className="sticky top-0">
         <Header />
         <Navbar />
       </div>
-      <div className="grid grid-cols-4 gap-4 m-8 justify-items-center">
+      <div className="sm:grid sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 m-8 max-w-6xl mx-auto">
         {displayedMovies.map((movie) => (
           <MovieCard
             key={movie.id}
             title={movie.title}
             id={movie.id}
             poster_path={movie.poster_path}
+              // onClick={() => router.push(`/MoviePage/${movie.id}`)}
           />
         ))}
       </div>
