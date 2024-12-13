@@ -4,6 +4,7 @@ import "./globals.css";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
+import MovieCard from "../components/MovieCard"
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -94,16 +95,11 @@ const Home: React.FC = () => {
       </div>
       <div className="grid grid-cols-4 gap-4 m-8 justify-items-center">
         {displayedMovies.map((movie) => (
-          <div key={movie.id} className="bg-gray-200 rounded-md p-2 w-48">
-            <Image
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-              width={200}
-              height={300}
-              className="rounded-md"
-            />
-            <h2 className="mt-2 font-bold w-46 overflow-hidden overflow-ellipsis whitespace-nowrap">{movie.title}</h2>
-          </div>
+          <MovieCard 
+            key={movie.id} 
+            title={movie.title } 
+            id={movie.id} 
+            poster_path={movie.poster_path}/>
         ))}
       </div>
 
