@@ -16,7 +16,7 @@ interface Movie {
 const Home: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState<number>(1);
-  const [totalMovies, setTotalMovies] = useState<number>(0); 
+  const [totalMovies, setTotalMovies] = useState<number>(0);
 
   // Fetch multiple pages of movies
   useEffect(() => {
@@ -30,11 +30,16 @@ const Home: React.FC = () => {
             `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&page=${i}`
           );
           const data = await res.json();
-          movieResults.push(...data.results); // Combine results from all pages
+          movieResults.push(...data.results);
         }
 
-        setMovies(movieResults);
-        setTotalMovies(movieResults.length); // Update the total number of movies
+        // Remove duplicates based on movie.id
+        const uniqueMovies = Array.from(
+          new Map(movieResults.map((movie) => [movie.id, movie])).values()
+        );
+
+        setMovies(uniqueMovies);
+        setTotalMovies(uniqueMovies.length);
       } catch (error) {
         console.error("Error fetching movies:", error);
       }
@@ -43,11 +48,9 @@ const Home: React.FC = () => {
     fetchMovies();
   }, []);
 
-
   if (movies.length === 0) {
     return <div>Loading...</div>;
   }
-
 
   const moviesPerPage = 8;
   const displayedMovies = movies.slice(
@@ -84,26 +87,28 @@ const Home: React.FC = () => {
   const visiblePages = getVisiblePages();
 
   return (
-    <div className="h-screen">
+    <div className="h-screen flex flex-col w-full">
+      <div className="sticky top-0">
       <Header />
       <Navbar />
-      <div className="grid grid-cols-4 gap-4 m-4 justify-items-center h-3/5">
+      </div>
+      <div className="grid grid-cols-4 gap-4 m-8 justify-items-center">
         {displayedMovies.map((movie) => (
-          <div key={movie.id} className="bg-gray-200 p-4 rounded-md w-72">
+          <div key={movie.id} className="bg-gray-200 rounded-md p-2 w-48">
             <Image
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt={movie.title}
-              width={100}
+              width={200}
               height={300}
               className="rounded-md"
             />
-            <h2 className="mt-2 font-bold">{movie.title}</h2>
+            <h2 className="mt-2 font-bold w-46 overflow-hidden overflow-ellipsis whitespace-nowrap">{movie.title}</h2>
           </div>
         ))}
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center mt-4 items-center gap-2 pt-6">
+      <div className="flex justify-center items-center mt-8 gap-2 mb-8">
         <button
           disabled={page === 1}
           className="px-4 py-2 bg-gray-300 rounded-md"
@@ -136,7 +141,6 @@ const Home: React.FC = () => {
           Next
         </button>
       </div>
-
       <Footer />
     </div>
   );

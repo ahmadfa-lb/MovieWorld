@@ -3,7 +3,7 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 
 const Navbar: FC = () => {
   return (
-    <nav className="bg-slate-800 shadow-md">
+    <nav className="bg-slate-800 shadow-md w-full opacity-80">
       <div className="container mx-auto flex gap-2 items-center">
         {/* Search Bar */}
         <FaMagnifyingGlass className='text-gray-100'/>

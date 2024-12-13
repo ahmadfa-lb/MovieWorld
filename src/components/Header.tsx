@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Header() {
   return (
     <>
-      <div className="mx-auto flex justify-between items-center bg-gray-900 shadow-md px-4">
+      <div className="mx-auto flex justify-between items-center bg-gray-900 shadow-md px-4 w-full">
         <div className="flex">
           <Image
             src="/assets/logo.png"
