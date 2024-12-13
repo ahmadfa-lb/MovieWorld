@@ -2,7 +2,7 @@
 
 import { use, useEffect, useState } from "react";
 import Header from "@/components/Header";
-import Navbar from "@/components/Navbar";
+import SearchBox from "@/components/SearchBox";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 
@@ -21,7 +21,7 @@ const MovieDetails = ({
 }: {
   params: Promise<{ id: string }>;
 }) => {
-  const params = use(paramsPromise); // Unwrapping the Promise using `use`
+  const params = use(paramsPromise);
   const [movie, setMovie] = useState<Movie | null>(null);
 
   useEffect(() => {
@@ -45,8 +45,10 @@ const MovieDetails = ({
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
-      <Navbar />
+      <div className="sticky top-0">
+        <Header />
+        <SearchBox />
+      </div>
 
       <main className="flex-1 flex justify-center items-center">
         {movie ? (
@@ -84,7 +86,9 @@ const MovieDetails = ({
                 {movie.original_language}
               </p>
               <p>
-                <span className="text-gray-900 text-lg font-bold">Overview:</span>{" "}
+                <span className="text-gray-900 text-lg font-bold">
+                  Overview:
+                </span>{" "}
                 {movie.overview}
               </p>
             </div>
