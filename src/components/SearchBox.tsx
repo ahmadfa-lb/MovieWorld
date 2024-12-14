@@ -4,17 +4,21 @@ import React, { FC, useState } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
 
-const SearchBox: FC = () => {
+interface SearchBoxProps{
+  page: number;
+}
+
+const SearchBox: FC<SearchBoxProps> = ({ page }) => {
   const [search, setSearch] = useState('');
   const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push(`/search/${search}`);
+    router.push(`/search/${page}/${search}`);
   };
 
   return (
-    <nav className="bg-slate-800 shadow-md w-full opacity-80">
+    <div className="bg-slate-800 shadow-md w-full opacity-80">
       <form className="container mx-auto flex items-center" onSubmit={handleSubmit}>
         <button title="search" disabled={search === ''} type="submit" className="disabled:cursor-not-allowed">
           <FaMagnifyingGlass className="text-gray-100"/>
@@ -27,7 +31,7 @@ const SearchBox: FC = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
       </form>
-    </nav>
+    </div>
   );
 };
 

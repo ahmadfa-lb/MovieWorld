@@ -23,7 +23,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const maxPagesToFetch = 6;
+        const maxPagesToFetch = 25;
         const movieResults: Movie[] = [];
 
         for (let i = 1; i <= maxPagesToFetch; i++) {
@@ -60,7 +60,7 @@ const Home: React.FC = () => {
     );
   }
 
-  const moviesPerPage = 8;
+  const moviesPerPage = 20;
   const displayedMovies = movies.slice(
     (page - 1) * moviesPerPage,
     page * moviesPerPage
@@ -95,10 +95,10 @@ const Home: React.FC = () => {
   const visiblePages = getVisiblePages();
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <div className="sticky top-0">
+    <div className="min-h-screen flex flex-col relative ">
+      <div className="sticky top-0 z-50">
         <Header />
-        <SearchBox />
+        <SearchBox page={page}/>
       </div>
 
       <div className="flex-1 flex flex-col items-center justify-center">

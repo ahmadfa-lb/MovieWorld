@@ -12,18 +12,20 @@ interface Movie {
 
 interface SearchPageProps {
   params: {
+    page: number;
     searchTerm: string;
   };
 }
 
 export default async function SearchPage({ params }: SearchPageProps) {
-  const searchTerm = params.searchTerm;
+  // const searchTerm = params.searchTerm;
+  const { page, searchTerm } = await params;
 
   const res = await fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&query=${searchTerm}&page=1`
+    `https://api.themoviedb.org/3/search/movie?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&page=${page}&query=${searchTerm}`
   );
 
-  console.log("Searching for:", searchTerm);
+  // console.log("Searching for:", searchTerm);
 
   if (!res.ok) {
     throw new Error("Failed to fetch movies.");
@@ -36,7 +38,7 @@ export default async function SearchPage({ params }: SearchPageProps) {
     <div className="min-h-screen flex flex-col">
       <div className="sticky top-0">
         <Header />
-        <SearchBox />
+        <SearchBox page={page} />
       </div>
 
       <div className="flex-1 sm:grid sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-4 m-8 items-center justify-center mx-auto">

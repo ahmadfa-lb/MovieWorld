@@ -2,7 +2,6 @@
 
 import { use, useEffect, useState } from "react";
 import Header from "@/components/Header";
-import SearchBox from "@/components/SearchBox";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 
@@ -47,7 +46,6 @@ const MovieDetails = ({
     <div className="min-h-screen flex flex-col">
       <div className="sticky top-0">
         <Header />
-        <SearchBox />
       </div>
 
       <main className="flex-1 flex justify-center items-center">
