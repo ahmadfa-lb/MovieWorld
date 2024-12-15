@@ -1,5 +1,3 @@
-import Footer from "@/components/Footer";
-// import Header from "@/components/Header";
 import MovieCard from "@/components/MovieCard";
 import SearchBox from "@/components/SearchBox";
 import React from "react";
@@ -37,7 +35,6 @@ export default async function SearchPage({ params }: SearchPageProps) {
   return (
     <div className="min-h-screen flex flex-col">
       <div className="sticky top-0 z-40">
-        {/* <Header /> */}
         <SearchBox page={page} />
       </div>
 
@@ -56,7 +53,6 @@ export default async function SearchPage({ params }: SearchPageProps) {
         )}
       </div>
 
-      <Footer />
     </div>
   );
 }
