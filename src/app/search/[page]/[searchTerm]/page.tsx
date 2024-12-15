@@ -36,7 +36,7 @@ export default async function SearchPage({ params }: SearchPageProps) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <div className="sticky top-0">
+      <div className="sticky top-0 z-50">
         <Header />
         <SearchBox page={page} />
       </div>
