@@ -1,8 +1,8 @@
 "use client";
 
 import { use, useEffect, useState } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+// import Header from "@/components/Header";
+// import Footer from "@/components/Footer";
 import Image from "next/image";
 
 interface Movie {
@@ -44,9 +44,9 @@ const MovieDetails = ({
 
   return (
     <div className="min-h-screen flex flex-col">
-      <div className="sticky top-0 z-50">
+      {/* <div className="sticky top-0 z-50">
         <Header />
-      </div>
+      </div> */}
 
       <main className="flex-1 flex justify-center items-center">
         {movie ? (
@@ -96,7 +96,7 @@ const MovieDetails = ({
         )}
       </main>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

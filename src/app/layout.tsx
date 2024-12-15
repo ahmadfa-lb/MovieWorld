@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from "@/components/Header";
+// import SearchBox from "@/components/SearchBox";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "MovieWorld",
@@ -13,10 +16,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body>
+        <div className="sticky top-0 z-50">
+          <Header />
+        </div>
+
         {children}
+
+        <Footer />
       </body>
     </html>
   );
