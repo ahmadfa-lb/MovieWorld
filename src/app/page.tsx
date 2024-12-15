@@ -12,8 +12,9 @@ const Home: React.FC = () => {
   }, [router]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <p>Redirecting to the first page...</p>
+    <div className="min-h-screen flex flex-col items-center justify-center " role="status">
+      <p className="w-16 h-16 border-4 border-slate-900 border-solid rounded-full animate-spin border-t-transparent"></p>
+      <p className="">please wait....</p>
     </div>
   );
 };

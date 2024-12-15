@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import { FaHouse, FaUser, FaRegLightbulb } from "react-icons/fa6";
+import { FaHouse, FaRegLightbulb } from "react-icons/fa6";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Header() {
   return (
@@ -28,9 +29,13 @@ export default function Header() {
             <FaRegLightbulb className="text-2xl text-gray-100" />
           </button>
 
-          <button title="login/out" type="submit">
-            <FaUser className="text-2xl text-gray-100" />
-          </button>
+          <Button variant="outline" size="sm">
+          Sign In
+      </Button>
+          <Button variant="destructive" size="sm">
+            {/* <FaUser className="text-2xl text-gray-100" /> */}
+            Sign Up
+          </Button>
         </div>
       </div>
     </>

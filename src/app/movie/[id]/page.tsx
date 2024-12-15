@@ -1,8 +1,6 @@
 "use client";
 
 import { use, useEffect, useState } from "react";
-// import Header from "@/components/Header";
-// import Footer from "@/components/Footer";
 import Image from "next/image";
 
 interface Movie {
